@@ -1,11 +1,21 @@
+import {
+  Accordion,
+  AccordionItem,
+  AccordionHeader,
+  AccordionTrigger,
+  AccordionContent,
+} from "@radix-ui/react-accordion";
+
 function App({ data, style }) {
   return (
     <div style={style}>
       <Accordion type="single">
         {data.map((item, index) => (
-          <AccordionItem key={index}>
-            <AccordionButton>{item.title}</AccordionButton>
-            <AccordionPanel>
+          <AccordionItem key={index} value={`item${index}`}>
+            <AccordionHeader>
+              <AccordionTrigger>{item.title}</AccordionTrigger>
+            </AccordionHeader>
+            <AccordionContent>
               <div>
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
@@ -23,10 +33,12 @@ function App({ data, style }) {
                   );
                 })}
               </div>
-            </AccordionPanel>
+            </AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>
     </div>
   );
 }
+
+export default App;
